@@ -4,11 +4,20 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>35249b0a-38be-4121-83dc-baeba904ccac</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.10" />
     <PackageReference Include="Microsoft.OpenApi" Version="2.11.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="10.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaParqueos.AccesoDatos\SistemaParqueos.AccesoDatos.csproj" />
+    <ProjectReference Include="..\SistemaParqueos.Dominio\SistemaParqueos.Dominio.csproj" />
+    <ProjectReference Include="..\SistemaParqueos.LogicaNegocio\SistemaParqueos.LogicaNegocio.csproj" />
+    <ProjectReference Include="..\SistemaParqueos.Utilitarios\SistemaParqueos.Utilitarios.csproj" />
   </ItemGroup>
 
 </Project>

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SistemaParqueos.AccesoDatos\SistemaParqueos.AccesoDatos.csproj" />
+    <ProjectReference Include="..\SistemaParqueos.Dominio\SistemaParqueos.Dominio.csproj" />
+  </ItemGroup>
+
 </Project>
