@@ -39,7 +39,16 @@ builder.Services.AddScoped<IFacturaLN, FacturaLN>();
 builder.Services.AddScoped<IIngresoVehiculoAD, IngresoVehiculoAD>();
 builder.Services.AddScoped<IIngresoVehiculoLN, IngresoVehiculoLN>();
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("IonicApp", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:8100")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
@@ -67,6 +76,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("IonicApp");
 
 app.UseAuthorization();
 
