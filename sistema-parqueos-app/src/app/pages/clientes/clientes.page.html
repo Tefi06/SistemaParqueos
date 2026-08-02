@@ -1,0 +1,156 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Clientes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <main class="pagina-clientes">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{ clienteEditandoId ? 'Editar cliente' : 'Registrar cliente' }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form
+          [formGroup]="formulario"
+          (ngSubmit)="guardar()"
+        >
+          <div class="form-grid">
+            <ion-item>
+              <ion-input
+                label="Nombre"
+                labelPlacement="stacked"
+                formControlName="nombre"
+                placeholder="Ingrese el nombre"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Apellidos"
+                labelPlacement="stacked"
+                formControlName="apellidos"
+                placeholder="Ingrese los apellidos"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Cédula"
+                labelPlacement="stacked"
+                formControlName="cedula"
+                placeholder="Ingrese la cédula"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Teléfono"
+                labelPlacement="stacked"
+                formControlName="telefono"
+                placeholder="Ingrese el teléfono"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                type="email"
+                label="Correo"
+                labelPlacement="stacked"
+                formControlName="correo"
+                placeholder="correo@ejemplo.com"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-toggle formControlName="activo">
+                Cliente activo
+              </ion-toggle>
+            </ion-item>
+          </div>
+
+          <div class="acciones-formulario">
+            <ion-button
+              type="submit"
+              [disabled]="guardando"
+            >
+              {{ guardando
+                ? 'Guardando...'
+                : clienteEditandoId
+                  ? 'Actualizar'
+                  : 'Registrar' }}
+            </ion-button>
+
+            <ion-button
+              *ngIf="clienteEditandoId"
+              type="button"
+              fill="outline"
+              color="medium"
+              (click)="cancelarEdicion()"
+            >
+              Cancelar
+            </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Clientes registrados</ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="estado-carga" *ngIf="cargando">
+          <ion-spinner></ion-spinner>
+          <span>Cargando clientes...</span>
+        </div>
+
+        <p
+          class="sin-registros"
+          *ngIf="!cargando && clientes.length === 0"
+        >
+          No hay clientes registrados.
+        </p>
+
+        <ion-list *ngIf="!cargando && clientes.length > 0">
+          <ion-item
+            *ngFor="let cliente of clientes"
+          >
+            <ion-label>
+              <h2>
+                {{ cliente.nombre }} {{ cliente.apellidos }}
+              </h2>
+
+              <p>Cédula: {{ cliente.cedula }}</p>
+              <p>Teléfono: {{ cliente.telefono || 'No indicado' }}</p>
+              <p>Correo: {{ cliente.correo || 'No indicado' }}</p>
+            </ion-label>
+
+            <div class="acciones-cliente">
+              <ion-button
+                size="small"
+                fill="outline"
+                (click)="editar(cliente)"
+              >
+                Editar
+              </ion-button>
+
+              <ion-button
+                size="small"
+                color="danger"
+                fill="outline"
+                (click)="eliminar(cliente)"
+              >
+                Desactivar
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </main>
+</ion-content>
