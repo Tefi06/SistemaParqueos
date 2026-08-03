@@ -116,16 +116,34 @@ public class ParqueoLN : IParqueoLN
     }
 
     private static ParqueoDTO MapearADTO(
-        Parqueo parqueo)
+     Parqueo parqueo)
     {
         return new ParqueoDTO
         {
             ParqueoId = parqueo.ParqueoId,
-            NombreParqueo = parqueo.NombreParqueo,
-            Direccion = parqueo.Direccion,
-            Telefono = parqueo.Telefono,
-            CapacidadTotal = parqueo.CapacidadTotal,
-            Activo = parqueo.Activo
+
+            NombreParqueo =
+                parqueo.NombreParqueo,
+
+            Direccion =
+                parqueo.Direccion,
+
+            Telefono =
+                parqueo.Telefono,
+
+            CapacidadTotal =
+                parqueo.EspacioParqueos.Count,
+
+            EspaciosDisponibles =
+                parqueo.EspacioParqueos
+                .Count(e => e.Disponible && e.Activo),
+
+            EspaciosOcupados =
+                parqueo.EspacioParqueos
+                .Count(e => !e.Disponible && e.Activo),
+
+            Activo =
+                parqueo.Activo
         };
     }
 

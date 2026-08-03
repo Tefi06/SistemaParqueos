@@ -1,0 +1,830 @@
+:host {
+  --noche: #171a3a;
+  --noche-clara: #252852;
+
+  --violeta: #5b5fef;
+  --violeta-oscuro: #4549ce;
+  --lavanda: #8b8cf8;
+
+  --cian: #20d3e0;
+  --cian-claro: #e5fbfd;
+
+  --fondo: #f4f5fb;
+  --blanco: #ffffff;
+
+  --texto: #20243a;
+  --texto-secundario: #6b7088;
+  --texto-suave: #9599ad;
+
+  --borde: #dde0f0;
+  --borde-fuerte: #c9cde3;
+
+  --exito: #20b486;
+  --error: #ef5b67;
+}
+
+/*
+ * ENCABEZADO
+ */
+
+ion-header {
+  box-shadow:
+    0 5px 22px
+    rgba(23, 26, 58, 0.2);
+}
+
+ion-toolbar {
+  --background: linear-gradient(
+    135deg,
+    var(--noche) 0%,
+    #34366f 58%,
+    var(--violeta) 100%
+  );
+
+  --color: var(--blanco);
+  --border-color: transparent;
+  --min-height: 72px;
+
+  padding: 0 14px;
+}
+
+ion-title {
+  color: var(--blanco);
+
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+/*
+ * BOTÓN VOLVER
+ */
+
+.boton-volver-dashboard {
+  appearance: none;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  height: 44px;
+  margin-left: 4px;
+  padding: 5px 17px 5px 6px;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.75);
+
+  border-radius: 13px;
+
+  background:
+    rgba(255, 255, 255, 0.97);
+
+  color: var(--noche-clara);
+
+  box-shadow:
+    0 9px 22px
+    rgba(14, 17, 48, 0.25);
+
+  cursor: pointer;
+
+  font-family: inherit;
+  font-size: 0.8rem;
+  font-weight: 750;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.boton-volver-dashboard:hover {
+  background: #ffffff;
+
+  box-shadow:
+    0 13px 29px
+    rgba(14, 17, 48, 0.34);
+
+  transform: translateY(-2px);
+}
+
+.boton-volver-dashboard:active {
+  transform: scale(0.97);
+}
+
+.circulo-icono-volver {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 10px;
+
+  background: linear-gradient(
+    135deg,
+    var(--violeta),
+    var(--cian)
+  );
+
+  box-shadow:
+    0 6px 14px
+    rgba(91, 95, 239, 0.28);
+}
+
+.circulo-icono-volver ion-icon {
+  color: #ffffff;
+  font-size: 1.05rem;
+}
+
+.texto-volver-dashboard {
+  color: var(--noche-clara);
+  white-space: nowrap;
+}
+
+/*
+ * CONTENIDO
+ */
+
+ion-content {
+  --background:
+    radial-gradient(
+      circle at 100% 0%,
+      rgba(91, 95, 239, 0.12),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at 0% 100%,
+      rgba(32, 211, 224, 0.09),
+      transparent 24%
+    ),
+    var(--fondo);
+}
+
+.pagina-vehiculos {
+  width: min(1180px, 100%);
+  margin: 0 auto;
+  padding: 28px 20px 45px;
+}
+
+/*
+ * PRESENTACIÓN
+ */
+
+.encabezado-pagina {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-bottom: 24px;
+  padding: 22px 25px;
+
+  border: 1px solid
+    rgba(91, 95, 239, 0.17);
+
+  border-radius: 19px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.96),
+      rgba(238, 238, 255, 0.94)
+    );
+
+  box-shadow:
+    0 10px 30px
+    rgba(23, 26, 58, 0.07);
+}
+
+.icono-pagina {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 61px;
+  height: 61px;
+
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    var(--violeta),
+    var(--cian)
+  );
+
+  color: var(--blanco);
+
+  box-shadow:
+    0 12px 26px
+    rgba(91, 95, 239, 0.25);
+}
+
+.icono-pagina ion-icon {
+  font-size: 1.8rem;
+}
+
+.encabezado-pagina span {
+  display: block;
+  margin-bottom: 4px;
+
+  color: var(--violeta);
+
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.encabezado-pagina h1 {
+  margin: 0 0 5px;
+
+  color: var(--noche);
+
+  font-size: 1.55rem;
+  font-weight: 850;
+  letter-spacing: -0.5px;
+}
+
+.encabezado-pagina p {
+  margin: 0;
+
+  color: var(--texto-secundario);
+
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+/*
+ * TARJETAS
+ */
+
+ion-card {
+  margin: 0 0 24px;
+  overflow: hidden;
+
+  border: 1px solid var(--borde);
+  border-radius: 20px;
+
+  background: var(--blanco);
+
+  box-shadow:
+    0 12px 32px
+    rgba(23, 26, 58, 0.08);
+}
+
+ion-card-header {
+  position: relative;
+
+  padding: 23px 25px 17px;
+
+  border-bottom: 1px solid #eceef7;
+
+  background: linear-gradient(
+    90deg,
+    rgba(139, 140, 248, 0.11),
+    rgba(32, 211, 224, 0.04),
+    transparent 70%
+  );
+}
+
+ion-card-header::before {
+  position: absolute;
+  top: 20px;
+  left: 0;
+
+  width: 5px;
+  height: 34px;
+
+  border-radius: 0 6px 6px 0;
+
+  background: linear-gradient(
+    180deg,
+    var(--cian),
+    var(--violeta)
+  );
+
+  content: '';
+}
+
+ion-card-title {
+  color: var(--noche);
+
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+ion-card-content {
+  padding: 25px;
+}
+
+/*
+ * FORMULARIO
+ */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+}
+
+ion-item {
+  --background: #fafaff;
+  --color: var(--texto);
+
+  --border-color: transparent;
+  --highlight-color-focused: transparent;
+  --highlight-color-valid: transparent;
+  --highlight-color-invalid: transparent;
+
+  --padding-start: 15px;
+  --inner-padding-end: 15px;
+
+  min-height: 72px;
+
+  overflow: hidden;
+
+  border: 1px solid var(--borde);
+  border-radius: 13px;
+
+  background: #fafaff;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+ion-item:hover {
+  border-color: var(--borde-fuerte);
+}
+
+ion-item:focus-within {
+  border-color: var(--violeta);
+
+  background: var(--blanco);
+
+  box-shadow:
+    0 0 0 4px
+    rgba(91, 95, 239, 0.13);
+
+  transform: translateY(-1px);
+}
+
+ion-input,
+ion-select {
+  --color: var(--texto);
+  --placeholder-color: var(--texto-suave);
+  --placeholder-opacity: 1;
+
+  width: 100%;
+
+  font-size: 0.95rem;
+}
+
+ion-toggle {
+  --track-background: #ccd0df;
+  --track-background-checked:
+    var(--violeta);
+
+  --handle-background: var(--blanco);
+  --handle-background-checked:
+    var(--blanco);
+
+  color: var(--texto);
+
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.campo-estado {
+  grid-column: 1 / -1;
+}
+
+/*
+ * BOTONES DEL FORMULARIO
+ */
+
+.acciones-formulario {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 12px;
+
+  margin-top: 25px;
+}
+
+.acciones-formulario ion-button {
+  min-width: 150px;
+  height: 47px;
+  margin: 0;
+
+  font-size: 0.92rem;
+  font-weight: 750;
+  text-transform: none;
+}
+
+.acciones-formulario
+ion-button:first-child {
+  --background: linear-gradient(
+    135deg,
+    var(--violeta),
+    var(--cian)
+  );
+
+  --background-hover:
+    var(--violeta-oscuro);
+
+  --background-activated: #3e42bd;
+
+  --color: var(--blanco);
+  --border-radius: 11px;
+
+  --box-shadow:
+    0 10px 24px
+    rgba(91, 95, 239, 0.27);
+}
+
+.acciones-formulario
+ion-button[fill='outline'] {
+  --background: transparent;
+  --border-color: var(--borde-fuerte);
+  --color: var(--texto-secundario);
+  --border-radius: 11px;
+  --box-shadow: none;
+}
+
+/*
+ * LISTA
+ */
+
+ion-list {
+  padding: 0;
+  background: transparent;
+}
+
+ion-list ion-item {
+  --background: var(--blanco);
+
+  align-items: center;
+
+  min-height: 160px;
+  margin-bottom: 14px;
+
+  border: 1px solid #e4e6f2;
+  border-left: 5px solid var(--violeta);
+
+  border-radius: 16px;
+
+  background: var(--blanco);
+
+  box-shadow:
+    0 7px 20px
+    rgba(23, 26, 58, 0.055);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+ion-list ion-item:hover {
+  border-color:
+    rgba(91, 95, 239, 0.42);
+
+  box-shadow:
+    0 13px 28px
+    rgba(23, 26, 58, 0.11);
+
+  transform: translateY(-2px);
+}
+
+.icono-vehiculo {
+  display: grid;
+  place-items: center;
+
+  flex-shrink: 0;
+
+  width: 49px;
+  height: 49px;
+  margin-right: 15px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(
+    135deg,
+    #eeeeff,
+    var(--cian-claro)
+  );
+
+  color: var(--violeta);
+
+  box-shadow:
+    0 8px 18px
+    rgba(91, 95, 239, 0.13);
+}
+
+.icono-vehiculo ion-icon {
+  font-size: 1.45rem;
+}
+
+ion-label {
+  margin: 15px 0;
+}
+
+.encabezado-vehiculo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 9px;
+}
+
+.encabezado-vehiculo h2 {
+  margin: 0;
+
+  color: var(--noche);
+
+  font-size: 1.15rem;
+  font-weight: 850;
+  letter-spacing: 0.5px;
+}
+
+.estado-vehiculo {
+  padding: 5px 9px;
+
+  border-radius: 50px;
+
+  background: #e7f8f2;
+  color: #168b68;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+}
+
+.estado-vehiculo.inactivo {
+  background: #fff0f1;
+  color: #d04452;
+}
+
+ion-label p {
+  margin: 4px 0;
+
+  color: var(--texto-secundario);
+
+  font-size: 0.88rem;
+  line-height: 1.4;
+}
+
+ion-label p strong {
+  color: var(--texto);
+}
+
+/*
+ * ACCIONES VEHÍCULO
+ */
+
+.acciones-vehiculo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+
+  gap: 8px;
+
+  margin-left: 18px;
+}
+
+.acciones-vehiculo ion-button {
+  height: 38px;
+  margin: 0;
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: none;
+}
+
+.acciones-vehiculo
+ion-button:first-child {
+  --background: #f0f0ff;
+  --color: var(--violeta-oscuro);
+
+  --border-color:
+    rgba(91, 95, 239, 0.38);
+
+  --border-radius: 9px;
+}
+
+.acciones-vehiculo
+ion-button[color='danger'] {
+  --background: #fff2f3;
+  --color: var(--error);
+
+  --border-color:
+    rgba(239, 91, 103, 0.42);
+
+  --border-radius: 9px;
+}
+
+/*
+ * CARGA Y SIN REGISTROS
+ */
+
+.estado-carga {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  min-height: 170px;
+
+  color: var(--violeta);
+  font-weight: 700;
+}
+
+ion-spinner {
+  --color: var(--cian);
+
+  width: 27px;
+  height: 27px;
+}
+
+.sin-registros {
+  margin: 0;
+  padding: 45px 22px;
+
+  border: 2px dashed #cacde2;
+  border-radius: 15px;
+
+  background: linear-gradient(
+    135deg,
+    #f1f1ff,
+    var(--cian-claro)
+  );
+
+  color: var(--texto-secundario);
+
+  text-align: center;
+
+  font-size: 0.95rem;
+  font-weight: 650;
+}
+
+/*
+ * TABLET
+ */
+
+@media (max-width: 850px) {
+  .pagina-vehiculos {
+    padding: 20px 14px 35px;
+  }
+
+  .form-grid {
+    gap: 14px;
+  }
+
+  ion-card-content {
+    padding: 21px;
+  }
+
+  ion-list ion-item {
+    align-items: flex-start;
+  }
+
+  .acciones-vehiculo {
+    flex-direction: column;
+  }
+}
+
+/*
+ * CELULAR
+ */
+
+@media (max-width: 700px) {
+  ion-toolbar {
+    --min-height: 64px;
+
+    padding: 0 7px;
+  }
+
+  ion-title {
+    font-size: 1.18rem;
+  }
+
+  .boton-volver-dashboard {
+    width: 44px;
+    min-width: 44px;
+    padding: 5px;
+  }
+
+  .texto-volver-dashboard {
+    display: none;
+  }
+
+  .pagina-vehiculos {
+    padding: 14px 10px 30px;
+  }
+
+  .encabezado-pagina {
+    align-items: flex-start;
+
+    padding: 18px;
+  }
+
+  .icono-pagina {
+    width: 51px;
+    height: 51px;
+  }
+
+  .encabezado-pagina h1 {
+    font-size: 1.25rem;
+  }
+
+  ion-card {
+    margin-bottom: 17px;
+    border-radius: 16px;
+  }
+
+  ion-card-header {
+    padding: 19px 17px 14px;
+  }
+
+  ion-card-content {
+    padding: 18px 14px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 13px;
+  }
+
+  .campo-estado {
+    grid-column: auto;
+  }
+
+  .acciones-formulario {
+    flex-direction: column;
+
+    margin-top: 20px;
+  }
+
+  .acciones-formulario ion-button {
+    width: 100%;
+    min-width: 0;
+  }
+
+  ion-list ion-item {
+    align-items: flex-start;
+
+    min-height: auto;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .icono-vehiculo {
+    display: none;
+  }
+
+  .acciones-vehiculo {
+    width: 100%;
+
+    margin: 14px 0 3px;
+
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .acciones-vehiculo ion-button {
+    flex: 1;
+  }
+}
+
+@media (max-width: 390px) {
+  .pagina-vehiculos {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .encabezado-pagina {
+    display: block;
+  }
+
+  .icono-pagina {
+    margin-bottom: 14px;
+  }
+
+  .acciones-vehiculo {
+    flex-direction: column;
+  }
+
+  .acciones-vehiculo ion-button {
+    width: 100%;
+  }
+}

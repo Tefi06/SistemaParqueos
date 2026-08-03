@@ -24,5 +24,11 @@ public class ParqueoDTO
     )]
     public int CapacidadTotal { get; set; }
 
+    public int EspaciosDisponibles { get; set; }
+
+
+    public int EspaciosOcupados { get; set; }
+
     public bool Activo { get; set; } = true;
+
 }

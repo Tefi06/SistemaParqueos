@@ -79,3 +79,47 @@ ion-content {
   border-radius: 9px !important;
   font-weight: 600 !important;
 }
+
+//se evita pantalla negra mientras carga
+html,
+body,
+ion-app,
+app-root,
+ion-router-outlet {
+  background: #f4f5fb;
+}
+
+html,
+body {
+  color-scheme: light;
+}
+ion-select-popover {
+  --background: #ffffff;
+  --color: #20243a;
+}
+
+ion-select-popover ion-item {
+  --background: #ffffff;
+  --color: #20243a;
+}
+
+ion-select-popover ion-label {
+  color: #20243a !important;
+}
+
+ion-popover {
+  --background: #ffffff;
+}
+
+ion-popover ion-content {
+  --background: #ffffff;
+}
+ion-item {
+  --background: #ffffff;
+  --color: #20243a;
+}
+
+ion-select {
+  --placeholder-color: #6b7088;
+  color: #20243a;
+}

@@ -1,2 +1,147 @@
-// For information on how to create your own theme, please refer to:
-// https://ionicframework.com/docs/theming/
+:root {
+  color-scheme: light;
+  /*
+   * COLOR PRINCIPAL
+   * Violeta eléctrico
+   */
+
+  --ion-color-primary: #5b5fef;
+  --ion-color-primary-rgb: 91, 95, 239;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #5054d2;
+  --ion-color-primary-tint: #6b6ff1;
+
+  /*
+   * COLOR SECUNDARIO
+   * Cian luminoso
+   */
+
+  --ion-color-secondary: #20d3e0;
+  --ion-color-secondary-rgb: 32, 211, 224;
+  --ion-color-secondary-contrast: #171a3a;
+  --ion-color-secondary-contrast-rgb: 23, 26, 58;
+  --ion-color-secondary-shade: #1cbbc5;
+  --ion-color-secondary-tint: #36d7e3;
+
+  /*
+   * COLOR TERCIARIO
+   * Lavanda
+   */
+
+  --ion-color-tertiary: #8b8cf8;
+  --ion-color-tertiary-rgb: 139, 140, 248;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #7a7bda;
+  --ion-color-tertiary-tint: #9798f9;
+
+  /*
+   * ESTADOS
+   */
+
+  --ion-color-success: #20b486;
+  --ion-color-success-rgb: 32, 180, 134;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #1c9e76;
+  --ion-color-success-tint: #36bc92;
+
+  --ion-color-warning: #f4b942;
+  --ion-color-warning-rgb: 244, 185, 66;
+  --ion-color-warning-contrast: #171a3a;
+  --ion-color-warning-contrast-rgb: 23, 26, 58;
+  --ion-color-warning-shade: #d7a33a;
+  --ion-color-warning-tint: #f5c055;
+
+  --ion-color-danger: #ef5b67;
+  --ion-color-danger-rgb: 239, 91, 103;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #d2505b;
+  --ion-color-danger-tint: #f16b76;
+
+  /*
+   * COLORES NEUTROS
+   */
+
+  --ion-color-light: #f4f5fb;
+  --ion-color-light-rgb: 244, 245, 251;
+  --ion-color-light-contrast: #20243a;
+  --ion-color-light-contrast-rgb: 32, 36, 58;
+  --ion-color-light-shade: #d7d8dd;
+  --ion-color-light-tint: #f5f6fb;
+
+  --ion-color-medium: #6b7088;
+  --ion-color-medium-rgb: 107, 112, 136;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #5e6378;
+  --ion-color-medium-tint: #7a7e94;
+
+  --ion-color-dark: #171a3a;
+  --ion-color-dark-rgb: 23, 26, 58;
+  --ion-color-dark-contrast: #ffffff;
+  --ion-color-dark-contrast-rgb: 255, 255, 255;
+  --ion-color-dark-shade: #141733;
+  --ion-color-dark-tint: #2e3150;
+
+  /*
+   * FONDO Y TEXTO
+   */
+
+  --ion-background-color: #f4f5fb;
+  --ion-background-color-rgb: 244, 245, 251;
+
+  --ion-text-color: #20243a;
+  --ion-text-color-rgb: 32, 36, 58;
+
+  --ion-border-color: #dde0f0;
+
+  /*
+   * VARIABLES PROPIAS DE SISTEMAPARQUEOS
+   */
+
+  --sp-noche: #171a3a;
+  --sp-noche-clara: #252852;
+  --sp-violeta: #5b5fef;
+  --sp-violeta-oscuro: #4549ce;
+  --sp-lavanda: #8b8cf8;
+
+  --sp-cian: #20d3e0;
+  --sp-cian-claro: #e5fbfd;
+
+  --sp-fondo: #f4f5fb;
+  --sp-fondo-secundario: #eef0f8;
+  --sp-blanco: #ffffff;
+
+  --sp-texto: #20243a;
+  --sp-texto-secundario: #6b7088;
+  --sp-texto-suave: #9599ad;
+
+  --sp-borde: #dde0f0;
+  --sp-borde-fuerte: #c9cde3;
+
+  --sp-exito: #20b486;
+  --sp-advertencia: #f4b942;
+  --sp-error: #ef5b67;
+
+  --sp-radio-pequeno: 10px;
+  --sp-radio-medio: 16px;
+  --sp-radio-grande: 22px;
+
+  --sp-sombra-suave:
+    0 8px 24px rgba(23, 26, 58, 0.07);
+
+  --sp-sombra-media:
+    0 16px 38px rgba(23, 26, 58, 0.12);
+
+  --sp-sombra-fuerte:
+    0 24px 60px rgba(23, 26, 58, 0.18);
+
+    --ion-item-color: #20243a;
+--ion-card-color: #20243a;
+--ion-label-color: #20243a;
+--ion-select-color: #20243a;
+--ion-placeholder-color: #6b7088;
+}

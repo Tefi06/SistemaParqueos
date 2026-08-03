@@ -1,0 +1,374 @@
+:host {
+  --noche: #171a3a;
+  --violeta: #5b5fef;
+  --cian: #20d3e0;
+
+  --fondo: #f4f5fb;
+  --blanco: #ffffff;
+
+  --texto: #20243a;
+  --texto-secundario: #6b7088;
+
+  --borde: #dde0f0;
+
+  --exito: #20b486;
+  --error: #ef5b67;
+}
+
+
+/*
+ * HEADER
+ */
+
+ion-toolbar {
+
+  --background:
+    linear-gradient(
+      135deg,
+      var(--noche),
+      #34366f,
+      var(--violeta)
+    );
+
+  --color: var(--blanco);
+  --min-height: 72px;
+
+}
+
+
+ion-title {
+
+  color: var(--blanco);
+
+  font-size: 1.25rem;
+  font-weight: 800;
+
+}
+
+
+
+/*
+ * BOTON VOLVER
+ */
+
+.boton-volver-dashboard {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  height: 44px;
+
+  padding:
+    5px 16px 5px 6px;
+
+  border-radius: 13px;
+
+  border: 1px solid
+    rgba(255,255,255,.7);
+
+  background: var(--blanco);
+
+  color: var(--noche);
+
+  font-weight: 700;
+
+}
+
+
+.circulo-icono-volver {
+
+  display: grid;
+
+  place-items: center;
+
+  width: 32px;
+
+  height: 32px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--violeta),
+      var(--cian)
+    );
+
+}
+
+
+.circulo-icono-volver ion-icon {
+
+  color: var(--blanco);
+
+}
+
+
+.texto-volver-dashboard {
+
+  font-size: 14px;
+
+}
+
+
+
+/*
+ * CONTENIDO
+ */
+
+ion-content {
+
+  --background:
+    radial-gradient(
+      circle at top right,
+      rgba(91,95,239,.12),
+      transparent 30%
+    ),
+    var(--fondo);
+
+}
+
+
+.pagina-espacios {
+
+  width: min(1180px,100%);
+
+  margin: 0 auto;
+
+  padding:
+    28px 20px 45px;
+
+}
+
+
+
+/*
+ * TARJETAS
+ */
+
+ion-card {
+
+  margin: 0 0 22px;
+
+  border-radius: 18px;
+
+  border: 1px solid var(--borde);
+
+  background: var(--blanco);
+
+  box-shadow:
+    0 12px 32px
+    rgba(23,26,58,.08);
+
+}
+
+
+ion-card-title {
+
+  color: var(--noche);
+
+  font-size: 22px;
+
+  font-weight: 700;
+
+}
+
+
+
+/*
+ * LISTA
+ */
+
+ion-list {
+
+  background: transparent;
+
+  padding: 0;
+
+}
+
+
+ion-item {
+
+  --background: var(--blanco);
+
+  --color: var(--texto);
+
+  --border-radius:14px;
+
+  margin-bottom:10px;
+
+  border:1px solid var(--borde);
+
+  border-radius:14px;
+
+  box-shadow:
+    0 8px 22px
+    rgba(23,26,58,.06);
+
+}
+
+
+ion-label {
+
+  color: var(--texto)!important;
+
+}
+
+
+ion-label p {
+
+  color:
+    var(--texto-secundario);
+
+}
+
+
+
+/*
+ * ENCABEZADO ESPACIO
+ */
+
+.encabezado-espacio {
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:space-between;
+
+}
+
+
+.encabezado-espacio h2 {
+
+  margin:0;
+
+  color:var(--noche);
+
+  font-size:18px;
+
+}
+
+
+
+/*
+ * ESTADOS
+ */
+
+.estado {
+
+  padding:
+    6px 12px;
+
+  border-radius:20px;
+
+  font-size:13px;
+
+  font-weight:700;
+
+}
+
+
+.estado.disponible {
+
+  background:#d8f8e4;
+
+  color:var(--exito);
+
+}
+
+
+.estado.ocupado {
+
+  background:#ffe0e0;
+
+  color:var(--error);
+
+}
+
+
+
+/*
+ * CARGA Y VACIO
+ */
+
+.estado-carga {
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:12px;
+
+  padding:30px;
+
+  color:var(--violeta);
+
+  font-weight:700;
+
+}
+
+
+.sin-registros {
+
+  text-align:center;
+
+  padding:25px;
+
+  color:var(--texto-secundario);
+
+}
+
+
+
+/*
+ * INPUTS
+ */
+
+ion-input {
+
+  --color:var(--texto);
+
+  --placeholder-color:
+    var(--texto-secundario);
+
+}
+
+
+
+/*
+ * RESPONSIVE
+ */
+
+@media(max-width:700px){
+
+  .pagina-espacios {
+
+    padding:
+      18px 12px 35px;
+
+  }
+
+
+  .texto-volver-dashboard {
+
+    display:none;
+
+  }
+
+
+  .boton-volver-dashboard {
+
+    width:44px;
+
+    padding:5px;
+
+  }
+
+}

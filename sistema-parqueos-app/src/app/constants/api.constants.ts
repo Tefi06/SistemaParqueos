@@ -9,4 +9,10 @@ export const API_ENDPOINTS = {
   tarifas: `${API_URL}/Tarifa`,
   ingresos: `${API_URL}/IngresoVehiculo`,
   facturas: `${API_URL}/Factura`,
+    crearAdministradorInicial:
+    `${API_URL}/Auth/CrearAdministradorInicial`,
+
+  login:
+    `${API_URL}/Auth/Login`,
+
 };

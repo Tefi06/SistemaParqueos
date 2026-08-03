@@ -297,6 +297,58 @@ CONSTRAINT [UQ_Vehiculo_Placa] UNIQUE NONCLUSTERED
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+CREATE TABLE Roles
+(
+    RolId INT IDENTITY(1,1) NOT NULL,
+    Nombre NVARCHAR(50) NOT NULL,
+    Activo BIT NOT NULL
+        CONSTRAINT DF_Roles_Activo DEFAULT 1,
+
+    CONSTRAINT PK_Roles
+        PRIMARY KEY (RolId),
+
+    CONSTRAINT UQ_Roles_Nombre
+        UNIQUE (Nombre)
+);
+GO
+
+CREATE TABLE Usuarios
+(
+    UsuarioId INT IDENTITY(1,1) NOT NULL,
+    RolId INT NOT NULL,
+    Nombre NVARCHAR(100) NOT NULL,
+    Correo NVARCHAR(150) NOT NULL,
+    ClaveHash NVARCHAR(255) NOT NULL,
+    Activo BIT NOT NULL
+        CONSTRAINT DF_Usuarios_Activo DEFAULT 1,
+    FechaCreacion DATETIME2 NOT NULL
+        CONSTRAINT DF_Usuarios_FechaCreacion
+        DEFAULT SYSDATETIME(),
+    RowVer ROWVERSION NOT NULL,
+
+    CONSTRAINT PK_Usuarios
+        PRIMARY KEY (UsuarioId),
+
+    CONSTRAINT UQ_Usuarios_Correo
+        UNIQUE (Correo),
+
+    CONSTRAINT FK_Usuarios_Roles
+        FOREIGN KEY (RolId)
+        REFERENCES Roles(RolId)
+);
+GO
+
+INSERT INTO Roles
+(
+    Nombre,
+    Activo
+)
+VALUES
+(
+    'Administrador',
+    1
+);
+GO
 ALTER TABLE [dbo].[Cliente] ADD DEFAULT ((1)) FOR [Activo]
 GO
 ALTER TABLE [dbo].[Cliente] ADD DEFAULT (sysutcdatetime()) FOR [CreadoEn]
@@ -392,8 +444,21 @@ select * from Tarifa;
 select * from TipoVehiculo;
 select * from Vehiculo;
 
-USE ParqueosDB;
-GO
+SELECT * FROM Roles;
+SELECT * FROM Usuarios;
+
 
 SELECT DB_NAME() AS BaseDatosActual;
+
+SELECT
+    ClienteId,
+    Nombre,
+    Apellidos,
+    Cedula,
+    Activo
+FROM Cliente;
+
+
+
+
 

@@ -1,13 +1,644 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
+
   <ion-toolbar>
-    <ion-title>dashboard</ion-title>
+
+    <div class="barra-superior">
+
+      <div class="marca">
+
+        <div class="logo">
+
+          <ion-icon
+            name="car-sport-outline">
+          </ion-icon>
+
+        </div>
+
+
+        <div>
+
+          <span>
+            Panel administrativo
+          </span>
+
+          <strong>
+            SistemaParqueos
+          </strong>
+
+        </div>
+
+      </div>
+
+
+
+      <div class="acciones-barra">
+
+
+        <div class="estado">
+
+          <span></span>
+
+          Sistema activo
+
+        </div>
+
+
+
+        <button
+          type="button"
+          class="boton-cerrar-sesion"
+          (click)="cerrarSesion()">
+
+
+          <span class="circulo-icono-salir">
+
+            <ion-icon
+              name="log-out-outline">
+            </ion-icon>
+
+          </span>
+
+
+          <span class="texto-cerrar-sesion">
+
+            Cerrar sesión
+
+          </span>
+
+
+        </button>
+
+
+      </div>
+
+
+    </div>
+
+
   </ion-toolbar>
+
+
 </ion-header>
 
+
+
+
+
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">dashboard</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+
+<main class="dashboard">
+
+
+
+  <section class="hero">
+
+
+    <div class="hero-contenido">
+
+
+      <p class="etiqueta">
+
+        Gestión inteligente
+
+      </p>
+
+
+
+      <h1>
+
+        Control total de las operaciones
+        del parqueo
+
+      </h1>
+
+
+
+      <p class="descripcion">
+
+        Administra vehículos, espacios,
+        ingresos y facturas desde una sola
+        aplicación.
+
+      </p>
+
+
+    </div>
+
+
+
+    <div class="hero-icono">
+
+      <ion-icon
+        name="car-sport-outline">
+      </ion-icon>
+
+
+    </div>
+
+
+
+  </section>
+
+
+
+
+
+  <section class="encabezado-seccion">
+
+
+    <div>
+
+      <span>
+        Resumen
+      </span>
+
+
+      <h2>
+        Indicadores principales
+      </h2>
+
+
+    </div>
+
+    <p>
+
+      Información general de las operaciones.
+
+    </p>
+
+  </section>
+
+  <section class="indicadores">
+
+    <article class="indicador">
+
+
+      <div class="icono-indicador violeta">
+
+        <ion-icon
+          name="car-sport-outline">
+        </ion-icon>
+
+      </div>
+
+
+
+      <div>
+
+        <span>
+          Vehículos ingresados hoy
+        </span>
+
+
+        <strong>
+          {{ vehiculosIngresados }}
+        </strong>
+
+
+        <small>
+          Vehículos registrados
+        </small>
+
+      </div>
+
+    </article>
+
+    <article class="indicador">
+
+
+      <div class="icono-indicador cian">
+
+        <ion-icon
+          name="log-in-outline">
+        </ion-icon>
+
+
+      </div>
+
+
+
+      <div>
+
+
+        <span>
+          Ingresos registrados
+        </span>
+
+
+        <strong>
+          {{ ingresosRegistrados }}
+        </strong>
+
+
+        <small>
+          Total de ingresos
+        </small>
+
+
+      </div>
+
+    </article>
+
+    <article class="indicador">
+
+
+      <div class="icono-indicador verde">
+
+
+        <ion-icon
+          name="business-outline">
+        </ion-icon>
+
+
+      </div>
+
+
+
+      <div>
+
+
+        <span>
+          Espacios disponibles
+        </span>
+
+
+        <strong>
+          {{ espaciosDisponibles }}
+        </strong>
+
+
+        <small>
+          Espacios libres
+        </small>
+
+
+      </div>
+
+
+
+    </article>
+
+    <article class="indicador">
+
+
+      <div class="icono-indicador lavanda">
+
+
+        <ion-icon
+          name="receipt-outline">
+        </ion-icon>
+
+
+      </div>
+
+      <div>
+
+
+        <span>
+          Facturación diaria
+        </span>
+
+
+
+        <strong>
+
+          {{
+          facturacionDiaria
+          | currency:
+          'CRC':
+          'symbol-narrow':
+          '1.0-0'
+          }}
+
+        </strong>
+
+
+
+        <small>
+          Total del día
+        </small>
+
+
+
+      </div>
+
+
+    </article>
+
+    <article class="indicador">
+
+
+      <div class="icono-indicador violeta">
+
+
+        <ion-icon
+          name="document-text-outline">
+        </ion-icon>
+
+
+      </div>
+
+
+
+      <div>
+
+
+        <span>
+          Facturación mensual
+        </span>
+
+
+
+        <strong>
+
+          {{
+          facturacionMensual
+          | currency:
+          'CRC':
+          'symbol-narrow':
+          '1.0-0'
+          }}
+
+        </strong>
+
+
+
+        <small>
+          Total del mes
+        </small>
+
+
+
+      </div>
+
+
+
+    </article>
+
+
+
+
+  </section>
+
+  <section class="encabezado-seccion modulos-titulo">
+
+
+    <div>
+
+      <span>
+        Módulos
+      </span>
+
+
+      <h2>
+        Gestión del sistema
+      </h2>
+
+
+    </div>
+
+
+
+    <p>
+      Selecciona una opción para continuar.
+    </p>
+
+
+
+  </section>
+
+
+
+  <section class="modulos">
+
+
+
+    <article class="modulo">
+
+
+      <div class="modulo-superior">
+
+        <div class="icono-modulo">
+
+          <ion-icon
+            name="car-sport-outline">
+          </ion-icon>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <h3>
+        Vehículos
+      </h3>
+
+
+      <p>
+        Administra los vehículos asociados
+        a cada cliente.
+      </p>
+
+
+
+      <ion-button
+        expand="block"
+        routerLink="/vehiculos">
+
+
+        Abrir módulo
+
+
+        <ion-icon
+          slot="end"
+          name="chevron-forward-outline">
+        </ion-icon>
+
+
+      </ion-button>
+
+
+
+    </article>
+
+    <article class="modulo">
+
+      <div class="modulo-superior">
+
+
+        <div class="icono-modulo">
+
+
+          <ion-icon
+            name="business-outline">
+          </ion-icon>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <h3>
+        Parqueos
+      </h3>
+
+
+
+      <p>
+        Gestiona parqueos, capacidad y
+        espacios disponibles.
+      </p>
+
+
+
+      <ion-button
+        expand="block"
+        routerLink="/parqueos">
+
+
+        Abrir módulo
+
+
+
+        <ion-icon
+          slot="end"
+          name="chevron-forward-outline">
+        </ion-icon>
+
+
+      </ion-button>
+
+
+
+    </article>
+
+    <article class="modulo">
+
+
+      <div class="modulo-superior">
+
+
+        <div class="icono-modulo">
+
+
+          <ion-icon
+            name="log-in-outline">
+          </ion-icon>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <h3>
+        Ingresos
+      </h3>
+
+
+
+      <p>
+        Registra entradas y salidas de
+        vehículos del parqueo.
+      </p>
+
+
+
+      <ion-button
+        expand="block"
+        routerLink="/ingresos">
+
+
+        Abrir módulo
+
+
+
+        <ion-icon
+          slot="end"
+          name="chevron-forward-outline">
+        </ion-icon>
+
+
+      </ion-button>
+
+
+
+    </article>
+
+    <article class="modulo">
+
+
+      <div class="modulo-superior">
+
+
+        <div class="icono-modulo">
+
+
+          <ion-icon
+            name="receipt-outline">
+          </ion-icon>
+
+
+        </div>
+
+
+      </div>
+
+
+
+      <h3>
+        Facturas
+      </h3>
+
+
+
+      <p>
+        Consulta y genera las facturas
+        correspondientes a los ingresos.
+      </p>
+
+
+
+      <ion-button
+        expand="block"
+        routerLink="/facturas">
+
+
+        Abrir módulo
+
+
+
+        <ion-icon
+          slot="end"
+          name="chevron-forward-outline">
+        </ion-icon>
+
+
+      </ion-button>
+
+
+
+    </article>
+
+
+
+
+
+
+  </section>
+
+
+
+</main>
+
+
 </ion-content>

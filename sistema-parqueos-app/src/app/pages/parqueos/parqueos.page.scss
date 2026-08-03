@@ -1,0 +1,483 @@
+:host {
+
+  --noche: #171a3a;
+  --noche-clara: #252852;
+
+  --violeta: #5b5fef;
+  --violeta-oscuro: #4549ce;
+
+  --cian: #20d3e0;
+
+  --fondo: #f4f5fb;
+
+  --blanco: #ffffff;
+
+  --texto: #20243a;
+  --texto-secundario: #6b7088;
+
+  --borde: #dde0f0;
+
+  --exito: #20b486;
+  --error: #ef5b67;
+
+}
+
+
+/*
+HEADER
+*/
+
+ion-header {
+
+  box-shadow:
+    0 5px 22px
+    rgba(23,26,58,0.2);
+
+}
+
+
+
+ion-toolbar {
+
+  --background:
+    linear-gradient(
+      135deg,
+      var(--noche),
+      #34366f,
+      var(--violeta)
+    );
+
+  --color:white;
+
+  --min-height:72px;
+
+}
+
+
+
+ion-title {
+
+  font-size:1.35rem;
+
+  font-weight:800;
+
+}
+
+
+
+
+
+/*
+BOTON VOLVER
+*/
+
+
+.boton-volver-dashboard {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  height:44px;
+
+  padding:5px 16px 5px 6px;
+
+  border-radius:13px;
+
+  border:1px solid
+  rgba(255,255,255,.7);
+
+  background:white;
+
+  color:var(--noche);
+
+  font-weight:700;
+
+}
+
+
+
+.circulo-icono-volver {
+
+  width:32px;
+
+  height:32px;
+
+  display:grid;
+
+  place-items:center;
+
+  border-radius:10px;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--violeta),
+      var(--cian)
+    );
+
+}
+
+
+.circulo-icono-volver ion-icon {
+
+  color:white;
+
+}
+
+
+
+
+
+/*
+CONTENIDO
+*/
+
+
+ion-content {
+
+  --background:
+
+    radial-gradient(
+      circle at top right,
+      rgba(91,95,239,.12),
+      transparent 30%
+    ),
+
+    var(--fondo);
+
+}
+
+
+
+.pagina-parqueos {
+
+  width:min(900px,100%);
+
+  margin:auto;
+
+  padding:30px 20px 45px;
+
+}
+
+
+
+
+
+
+
+/*
+CARGANDO
+*/
+
+
+.estado-carga {
+
+  display:flex;
+
+  justify-content:center;
+
+  align-items:center;
+
+  gap:12px;
+
+  min-height:180px;
+
+  color:var(--violeta);
+
+  font-weight:700;
+
+}
+
+
+
+
+
+
+/*
+SIN REGISTROS
+*/
+
+
+.sin-registros {
+
+  padding:40px;
+
+  text-align:center;
+
+  border-radius:18px;
+
+  border:2px dashed #cacde2;
+
+  background:white;
+
+  color:var(--texto-secundario);
+
+}
+
+
+
+
+
+
+
+
+/*
+TARJETA PARQUEO
+*/
+
+
+ion-card {
+
+  border-radius:22px;
+
+  background:white;
+
+  border:1px solid var(--borde);
+
+  box-shadow:
+
+    0 15px 35px
+    rgba(23,26,58,.10);
+
+}
+
+
+
+ion-card-header {
+
+  padding:25px;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      rgba(91,95,239,.12),
+      rgba(32,211,224,.05)
+    );
+
+}
+
+
+
+ion-card-title {
+
+  color:var(--noche);
+
+}
+
+
+
+
+
+
+
+.encabezado-parqueo {
+
+  display:flex;
+
+  justify-content:space-between;
+
+  align-items:center;
+
+  gap:15px;
+
+}
+
+
+
+.encabezado-parqueo h2 {
+
+  margin:0;
+
+  font-size:1.25rem;
+
+  font-weight:800;
+
+}
+
+
+
+
+
+
+
+.estado-parqueo {
+
+
+  padding:6px 12px;
+
+  border-radius:50px;
+
+  background:#e7f8f2;
+
+  color:#168b68;
+
+  font-size:.75rem;
+
+  font-weight:800;
+
+}
+
+
+
+.estado-parqueo.inactivo {
+
+  background:#fff0f1;
+
+  color:var(--error);
+
+}
+
+
+
+
+
+
+
+
+/*
+DATOS
+*/
+
+
+ion-list {
+
+  background:transparent;
+
+}
+
+
+
+ion-item {
+
+  --background:white;
+
+  margin-bottom:12px;
+
+  border-radius:15px;
+
+  border:1px solid #e4e6f2;
+
+}
+
+
+
+ion-item ion-icon {
+
+  color:var(--violeta);
+
+  font-size:1.3rem;
+
+}
+
+
+ion-label strong {
+
+  color:var(--noche);
+
+}
+
+
+
+ion-label p {
+
+  color:var(--texto-secundario);
+
+  margin-top:5px;
+
+}
+
+
+
+
+
+
+
+/*
+BOTON ESPACIOS
+*/
+
+
+.acciones-parqueo {
+
+  display:flex;
+
+  justify-content:flex-end;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  margin-top:25px;
+
+}
+/*
+CELULAR
+*/
+
+
+@media(max-width:700px){
+
+
+  .pagina-parqueos {
+
+    padding:15px 10px 30px;
+
+  }
+
+
+
+  .texto-volver-dashboard {
+
+    display:none;
+
+  }
+
+
+
+  .boton-volver-dashboard {
+
+    width:44px;
+
+    padding:5px;
+
+  }
+
+
+
+  .encabezado-parqueo {
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+  }
+
+
+
+  .acciones-parqueo ion-button {
+
+    width:100%;
+
+  }
+
+
+}
+.acciones-parqueo {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+
+.boton-espacios {
+
+  --border-color: var(--violeta);
+
+  --color: var(--violeta);
+
+}

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpErrorResponse } from '@angular/common/http';
+
 import {
   Component,
   OnInit,
@@ -12,28 +13,36 @@ import {
   Validators
 } from '@angular/forms';
 
+import { RouterLink } from '@angular/router';
+
 import {
   IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardTitle,
   IonContent,
   IonHeader,
+  IonIcon,
   IonInput,
   IonItem,
   IonLabel,
   IonList,
   IonSpinner,
   IonTitle,
-  IonToggle,
   IonToolbar
 } from '@ionic/angular/standalone';
+
+import { addIcons } from 'ionicons';
+import { arrowBackOutline } from 'ionicons/icons';
 
 import Swal from 'sweetalert2';
 
 import { Cliente } from '../../models/cliente.model';
 import { ClienteService } from '../../services/cliente';
+
+type FiltroCliente = 'activos';
 
 @Component({
   selector: 'app-clientes',
@@ -43,17 +52,19 @@ import { ClienteService } from '../../services/cliente';
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    RouterLink,
     IonHeader,
     IonToolbar,
     IonTitle,
     IonContent,
+    IonButtons,
+    IonIcon,
     IonCard,
     IonCardHeader,
     IonCardTitle,
     IonCardContent,
     IonItem,
     IonInput,
-    IonToggle,
     IonButton,
     IonList,
     IonLabel,
@@ -69,26 +80,34 @@ export class ClientesPage implements OnInit {
 
   private readonly alerta = Swal.mixin({
     background: '#ffffff',
-    color: '#081f35',
+    color: '#20243a',
 
-    confirmButtonColor: '#123a63',
-    cancelButtonColor: '#64748b',
+    confirmButtonColor: '#5b5fef',
+    cancelButtonColor: '#6b7088',
 
     backdrop:
-      'rgba(8, 31, 53, 0.45)',
+      'rgba(23, 26, 58, 0.45)',
 
     heightAuto: false,
 
     buttonsStyling: true,
 
     customClass: {
-      popup: 'alerta-parqueos',
-      confirmButton: 'boton-confirmar-alerta',
-      cancelButton: 'boton-cancelar-alerta'
+      popup:
+        'alerta-parqueos',
+
+      confirmButton:
+        'boton-confirmar-alerta',
+
+      cancelButton:
+        'boton-cancelar-alerta'
     }
   });
 
   clientes: Cliente[] = [];
+
+  filtroSeleccionado: FiltroCliente =
+    'activos';
 
   cargando = false;
   guardando = false;
@@ -133,9 +152,25 @@ export class ClientesPage implements OnInit {
       activo: [true]
     });
 
+  constructor() {
+    addIcons({
+      arrowBackOutline
+    });
+  }
+
   ngOnInit(): void {
     this.cargarClientes();
   }
+
+ get clientesFiltrados(): Cliente[] {
+  return this.clientes.filter(
+    cliente => cliente.activo
+  );
+}
+
+get mensajeSinRegistros(): string {
+  return 'No hay clientes registrados.';
+}
 
   cargarClientes(): void {
     this.cargando = true;
@@ -244,6 +279,9 @@ export class ClientesPage implements OnInit {
               'Aceptar'
           });
 
+          this.filtroSeleccionado =
+            'activos';
+
           this.limpiarFormulario();
           this.cargarClientes();
         },
@@ -262,7 +300,10 @@ export class ClientesPage implements OnInit {
     cliente: Cliente
   ): void {
     this.clienteService
-      .actualizar(id, cliente)
+      .actualizar(
+        id,
+        cliente
+      )
       .subscribe({
         next: (respuesta) => {
           this.guardando = false;
@@ -294,7 +335,9 @@ export class ClientesPage implements OnInit {
       });
   }
 
-  editar(cliente: Cliente): void {
+  editar(
+    cliente: Cliente
+  ): void {
     this.clienteEditandoId =
       cliente.clienteId;
 
@@ -334,6 +377,10 @@ export class ClientesPage implements OnInit {
   async eliminar(
     cliente: Cliente
   ): Promise<void> {
+    if (!cliente.activo) {
+      return;
+    }
+
     const confirmacion =
       await this.alerta.fire({
         icon: 'question',
@@ -372,6 +419,75 @@ export class ClientesPage implements OnInit {
             text:
               respuesta.mensaje ||
               'El cliente fue desactivado correctamente.',
+
+            confirmButtonText:
+              'Aceptar'
+          });
+
+          this.cargarClientes();
+        },
+
+        error: (
+          error: HttpErrorResponse
+        ) => {
+          this.mostrarError(error);
+        }
+      });
+  }
+
+  async reactivar(
+    cliente: Cliente
+  ): Promise<void> {
+    if (cliente.activo) {
+      return;
+    }
+
+    const confirmacion =
+      await this.alerta.fire({
+        icon: 'question',
+
+        title:
+          'Reactivar cliente',
+
+        text:
+          `¿Deseas reactivar a ${cliente.nombre} ${cliente.apellidos}?`,
+
+        showCancelButton: true,
+
+        confirmButtonText:
+          'Sí, reactivar',
+
+        cancelButtonText:
+          'Cancelar',
+
+        reverseButtons: true
+      });
+
+    if (!confirmacion.isConfirmed) {
+      return;
+    }
+
+    const clienteActualizado: Cliente = {
+      ...cliente,
+      activo: true
+    };
+
+    this.clienteService
+      .actualizar(
+        cliente.clienteId,
+        clienteActualizado
+      )
+      .subscribe({
+        next: (respuesta) => {
+          void this.alerta.fire({
+            icon: 'success',
+
+            title:
+              'Cliente reactivado',
+
+            text:
+              respuesta.mensaje ||
+              'El cliente fue reactivado correctamente.',
 
             confirmButtonText:
               'Aceptar'

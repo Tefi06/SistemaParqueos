@@ -106,11 +106,11 @@ public class IngresoVehiculoAD : IIngresoVehiculoAD
 
         ingreso.FechaSalida = fechaSalida;
         ingreso.Estado = "Finalizado";
-        ingreso.ActualizadoEn = DateTime.UtcNow;
+        ingreso.ActualizadoEn = fechaSalida;
         ingreso.ActualizadoPor = "Sistema";
 
         ingreso.Espacio.Disponible = true;
-        ingreso.Espacio.ActualizadoEn = DateTime.UtcNow;
+        ingreso.Espacio.ActualizadoEn = fechaSalida;
         ingreso.Espacio.ActualizadoPor = "Sistema";
 
         int filasAfectadas =

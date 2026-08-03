@@ -12,6 +12,7 @@ public class FacturaLN : IFacturaLN
     public FacturaLN(IFacturaAD facturaAD)
     {
         _facturaAD = facturaAD;
+     
     }
 
     public async Task<List<FacturaDTO>>
@@ -115,16 +116,26 @@ public class FacturaLN : IFacturaLN
                 "El monto total no puede ser negativo."
             );
         }
+        DateTime fechaActual =
+       TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+           DateTime.UtcNow,
+           "Central America Standard Time"
+       );
 
+        DateTime fechaCostaRica =
+       TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+           DateTime.UtcNow,
+           "Central America Standard Time"
+       );
         Factura factura = new()
         {
             IngresoId = ingresoId,
-            FechaFactura = DateTime.UtcNow,
+            FechaFactura = fechaCostaRica,
             HorasCobradas = horasCobradas,
             MontoTotal = montoTotal,
-            CreadoEn = DateTime.UtcNow,
+            CreadoEn = fechaCostaRica,
             CreadoPor = "Sistema"
-        };
+        }; 
 
         Factura creada =
             await _facturaAD.CrearAsync(factura);
@@ -133,7 +144,7 @@ public class FacturaLN : IFacturaLN
     }
 
     private static FacturaDTO MapearADTO(
-        Factura factura)
+    Factura factura)
     {
         return new FacturaDTO
         {
@@ -141,7 +152,15 @@ public class FacturaLN : IFacturaLN
             IngresoId = factura.IngresoId,
             FechaFactura = factura.FechaFactura,
             HorasCobradas = factura.HorasCobradas,
-            MontoTotal = factura.MontoTotal
+            MontoTotal = factura.MontoTotal,
+
+            Placa =
+            factura.Ingreso.Vehiculo.Placa,
+            Vehiculo =
+            $"{factura.Ingreso.Vehiculo.Marca} {factura.Ingreso.Vehiculo.Modelo}",
+            Cliente =
+            $"{factura.Ingreso.Vehiculo.Cliente.Nombre} {factura.Ingreso.Vehiculo.Cliente.Apellidos}"
+
         };
     }
 }

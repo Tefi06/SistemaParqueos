@@ -1,13 +1,292 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>facturas</ion-title>
+<ion-header class="ion-no-border">
+
+  <ion-toolbar class="toolbar-facturas">
+
+
+    <ion-buttons slot="start">
+
+
+      <button
+        type="button"
+        class="boton-volver-dashboard"
+        routerLink="/dashboard">
+
+
+        <span class="circulo-icono-volver">
+
+          <ion-icon
+            name="arrow-back-outline">
+          </ion-icon>
+
+        </span>
+
+
+        <span class="texto-volver-dashboard">
+
+          Volver al Dashboard
+
+        </span>
+
+
+      </button>
+
+
+    </ion-buttons>
+
+
+
+    <ion-title class="titulo-header">
+
+      Facturas
+
+    </ion-title>
+
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">facturas</ion-title>
-    </ion-toolbar>
-  </ion-header>
+
+
+
+
+<ion-content>
+
+
+  <main class="pagina-facturas">
+
+
+
+    <ion-card class="card-facturas">
+
+
+
+      <ion-card-header>
+
+
+        <ion-card-title>
+
+          Facturas generadas
+
+        </ion-card-title>
+
+
+      </ion-card-header>
+
+
+
+
+      <ion-card-content>
+
+
+
+        <p
+          class="mensaje-vacio"
+          *ngIf="!cargando && facturas.length === 0">
+
+
+          No hay facturas registradas.
+
+
+        </p>
+
+
+
+
+
+        <ion-list
+          *ngIf="facturas.length > 0">
+
+
+
+          <ion-item
+            lines="none"
+            class="factura-item"
+            *ngFor="let factura of facturas">
+
+
+
+            <ion-label>
+
+
+
+              <div class="encabezado-factura">
+
+
+
+                <div class="titulo-factura">
+
+
+                  <ion-icon
+                    name="document-text-outline">
+                  </ion-icon>
+
+
+
+                  <h2>
+
+                    Factura #{{factura.facturaId}}
+
+                  </h2>
+
+
+                </div>
+
+
+
+
+
+                <span class="estado-factura">
+
+                  Generada
+
+                </span>
+
+
+
+              </div>
+
+
+
+
+
+
+
+              <div class="detalle-factura">
+
+
+
+                <p>
+
+                  <strong>
+
+                    Cliente:
+
+                  </strong>
+
+
+                  {{factura.cliente}}
+
+
+                </p>
+
+
+
+
+
+
+                <p>
+
+                  <strong>
+
+                    Vehículo:
+
+                  </strong>
+
+
+                  {{factura.placa}}
+
+                  -
+
+                  {{factura.vehiculo}}
+
+
+                </p>
+
+
+
+
+
+
+                <p>
+
+                  <strong>
+
+                    Horas cobradas:
+
+                  </strong>
+
+
+                  {{factura.horasCobradas}}
+
+
+                </p>
+
+
+
+
+
+
+
+                <div class="total-factura">
+
+
+                  <span>
+
+                    Total
+
+                  </span>
+
+
+
+
+                  <strong>
+
+                    ₡{{factura.montoTotal}}
+
+                  </strong>
+
+
+                </div>
+
+
+
+
+
+
+
+                <p class="fecha-factura">
+
+
+                  Fecha:
+
+                  {{factura.fechaFactura | date:'dd/MM/yyyy HH:mm'}}
+
+
+                </p>
+
+
+
+
+
+              </div>
+
+
+
+
+            </ion-label>
+
+
+
+
+          </ion-item>
+
+
+
+        </ion-list>
+
+
+
+      </ion-card-content>
+
+
+
+    </ion-card>
+
+
+
+  </main>
+
+
+
 </ion-content>

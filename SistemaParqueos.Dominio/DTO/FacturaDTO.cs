@@ -33,4 +33,10 @@ public class FacturaDTO
         ErrorMessage = "El monto total no puede ser negativo."
     )]
     public decimal MontoTotal { get; set; }
+
+    public string? Placa { get; set; }
+
+    public string? Vehiculo { get; set; }
+
+    public string? Cliente { get; set; }
 }

@@ -17,17 +17,34 @@ public class FacturaAD : IFacturaAD
     public async Task<List<Factura>> ObtenerTodosAsync()
     {
         return await _context.Facturas
+
             .AsNoTracking()
+
+            .Include(factura => factura.Ingreso)
+
+                .ThenInclude(ingreso => ingreso.Vehiculo)
+
+                    .ThenInclude(vehiculo => vehiculo.Cliente)
+
             .OrderByDescending(
                 factura => factura.FechaFactura
             )
+
             .ToListAsync();
     }
 
     public async Task<Factura?> ObtenerPorIdAsync(int id)
     {
         return await _context.Facturas
+
             .AsNoTracking()
+
+            .Include(factura => factura.Ingreso)
+
+                .ThenInclude(ingreso => ingreso.Vehiculo)
+
+                    .ThenInclude(vehiculo => vehiculo.Cliente)
+
             .FirstOrDefaultAsync(
                 factura => factura.FacturaId == id
             );

@@ -1,0 +1,501 @@
+:host {
+
+  --noche: #171a3a;
+  --noche-clara: #252852;
+
+  --violeta: #5b5fef;
+  --violeta-oscuro: #4549ce;
+
+  --cian: #20d3e0;
+
+  --fondo: #f4f5fb;
+
+  --blanco: #ffffff;
+
+  --texto: #20243a;
+  --texto-secundario: #6b7088;
+
+  --borde: #dde0f0;
+
+}
+
+
+
+/*
+HEADER
+*/
+
+
+ion-header {
+
+  box-shadow:
+    0 5px 22px rgba(23,26,58,.2);
+
+}
+
+
+
+ion-toolbar {
+
+  --background:
+
+    linear-gradient(
+      135deg,
+      var(--noche),
+      #34366f,
+      var(--violeta)
+    );
+
+
+  --color:white;
+
+  --min-height:72px;
+
+}
+
+
+
+ion-title {
+
+  font-size:1.35rem;
+
+  font-weight:800;
+
+}
+
+
+
+
+
+
+/*
+BOTON VOLVER
+*/
+
+
+.boton-volver-dashboard {
+
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+
+  height:44px;
+
+
+  padding:
+
+    5px 16px 5px 6px;
+
+
+  border-radius:13px;
+
+
+  border:1px solid rgba(255,255,255,.7);
+
+
+  background:white;
+
+
+  color:var(--noche);
+
+
+  font-weight:700;
+
+
+}
+
+
+
+.circulo-icono-volver {
+
+
+  width:32px;
+
+  height:32px;
+
+
+  display:grid;
+
+
+  place-items:center;
+
+
+  border-radius:10px;
+
+
+  background:
+
+    linear-gradient(
+      135deg,
+      var(--violeta),
+      var(--cian)
+    );
+
+
+}
+
+
+
+.circulo-icono-volver ion-icon {
+
+  color:white;
+
+}
+
+
+
+
+
+
+/*
+CONTENIDO
+*/
+
+
+ion-content {
+
+  --background:
+
+    radial-gradient(
+
+      circle at top right,
+
+      rgba(91,95,239,.12),
+
+      transparent 30%
+
+    ),
+
+    var(--fondo);
+
+}
+
+
+
+.pagina-facturas {
+
+  width:min(900px,100%);
+
+  margin:auto;
+
+  padding:30px 20px 45px;
+
+}
+
+
+
+
+
+
+
+/*
+CARD FACTURAS
+*/
+
+
+ion-card {
+
+  overflow:hidden;
+
+  border-radius:22px;
+
+  background:white;
+
+  border:1px solid var(--borde);
+
+  box-shadow:
+    0 15px 35px rgba(23,26,58,.10);
+
+}
+
+
+
+
+
+ion-card-header {
+
+
+  padding:25px;
+
+
+  background:
+
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(91,95,239,.12),
+
+      rgba(32,211,224,.05)
+
+    );
+
+
+}
+
+
+
+ion-card-title {
+
+  color:var(--noche);
+
+  font-weight:800;
+
+}
+
+
+
+
+
+/*
+FACTURA ITEM
+*/
+
+
+ion-list {
+
+  background:transparent;
+
+}
+
+
+
+.factura-item {
+
+
+  --background:white;
+
+
+  margin-bottom:12px;
+
+
+  border-radius:15px;
+
+
+  border:1px solid #e4e6f2;
+
+
+}
+
+
+
+
+
+/*
+TITULO FACTURA
+*/
+
+
+.titulo-factura {
+
+
+  display:flex;
+
+
+  align-items:center;
+
+
+  gap:10px;
+
+
+}
+
+
+
+.titulo-factura ion-icon {
+
+
+  color:var(--violeta);
+
+
+}
+
+
+
+.titulo-factura h2 {
+
+
+  margin:0;
+
+
+  color:var(--noche);
+
+
+  font-weight:800;
+
+
+}
+
+
+
+
+
+/*
+ESTADO
+*/
+
+
+.estado-factura {
+
+
+  background:#e7f8f2;
+
+
+  color:#168b68;
+
+
+  padding:6px 12px;
+
+
+  border-radius:50px;
+
+
+  font-size:.75rem;
+
+
+  font-weight:800;
+
+
+}
+
+
+
+
+
+
+/*
+DATOS
+*/
+
+
+.detalle-factura p {
+
+
+  color:var(--texto-secundario);
+
+
+  margin-top:8px;
+
+
+}
+
+
+
+.detalle-factura strong {
+
+
+  color:var(--noche);
+
+
+}
+
+
+
+
+
+
+/*
+TOTAL
+*/
+
+
+.total-factura {
+
+
+  margin-top:20px;
+
+
+  padding:15px;
+
+
+  border-radius:15px;
+
+
+  background:
+
+
+    linear-gradient(
+
+      90deg,
+
+      rgba(91,95,239,.12),
+
+      rgba(32,211,224,.05)
+
+    );
+
+
+  display:flex;
+
+
+  justify-content:space-between;
+
+
+}
+
+
+
+.total-factura strong {
+
+
+  color:var(--violeta);
+
+
+  font-size:1.2rem;
+
+
+}
+
+
+
+
+
+
+.fecha-factura {
+
+
+  color:var(--texto-secundario);
+
+  font-size:.85rem;
+
+}
+
+
+
+
+
+
+@media(max-width:700px){
+
+
+  .pagina-facturas {
+
+    padding:15px 10px 30px;
+
+  }
+
+
+
+  .texto-volver-dashboard {
+
+    display:none;
+
+  }
+
+
+
+  .boton-volver-dashboard {
+
+    width:44px;
+
+    padding:5px;
+
+  }
+
+
+}

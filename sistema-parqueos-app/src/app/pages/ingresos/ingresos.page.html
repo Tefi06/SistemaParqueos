@@ -1,13 +1,286 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
+
   <ion-toolbar>
-    <ion-title>ingresos</ion-title>
+
+    <ion-buttons slot="start">
+
+      <button type="button" class="boton-volver-dashboard" routerLink="/dashboard">
+
+        <span class="circulo-icono-volver">
+
+          <ion-icon name="arrow-back-outline"></ion-icon>
+
+        </span>
+
+
+        <span class="texto-volver-dashboard">
+
+          Volver al Dashboard
+
+        </span>
+
+      </button>
+
+    </ion-buttons>
+
+
+    <ion-title>
+      Ingresos
+    </ion-title>
+
+
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">ingresos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+
+
+  <main class="pagina-ingresos">
+    
+    <!-- REGISTRAR INGRESO -->
+
+    <ion-card>
+
+
+      <ion-card-header>
+
+        <ion-card-title>
+
+          Registrar entrada de vehículo
+
+        </ion-card-title>
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <form [formGroup]="formulario" (ngSubmit)="registrarIngreso()">
+
+          <ion-item>
+
+            <ion-label position="stacked">
+
+              Vehículo
+
+            </ion-label>
+
+            <ion-select formControlName="vehiculoId" placeholder="Seleccione vehículo">
+
+              <ion-select-option *ngFor="let vehiculo of vehiculos" [value]="vehiculo.vehiculoId">
+
+                {{vehiculo.placa}}
+
+              </ion-select-option>
+
+            </ion-select>
+            
+
+          </ion-item>
+
+          <ion-item>
+
+            <ion-label position="stacked">
+
+              Parqueo
+
+            </ion-label>
+
+            <ion-select 
+  formControlName="parqueoId" 
+  placeholder="Seleccione parqueo"
+  (ionChange)="cambioParqueo()">
+
+              <ion-select-option *ngFor="let parqueo of parqueos" [value]="parqueo.parqueoId">
+
+
+                {{parqueo.nombreParqueo}}
+
+
+              </ion-select-option>
+
+            </ion-select>
+
+
+          </ion-item>
+
+          <ion-item>
+
+            <ion-label position="stacked">
+
+              Espacio disponible
+
+            </ion-label>
+
+
+            <ion-select formControlName="espacioId" placeholder="Seleccione espacio">
+
+
+              <ion-select-option *ngFor="let espacio of espaciosDisponibles" [value]="espacio.espacioId">
+
+
+                {{espacio.numeroEspacio}}
+
+              </ion-select-option>
+
+            </ion-select>
+
+          </ion-item>
+
+          <div class="acciones-ingreso">
+
+
+            <ion-button type="submit" [disabled]="guardando">
+
+
+              Registrar ingreso
+
+
+            </ion-button>
+
+          </div>
+
+        </form>
+
+      </ion-card-content>
+
+    </ion-card>
+
+
+    <ion-card>
+
+      <ion-card-header>
+
+        <ion-card-title>
+
+          Ingresos registrados
+
+        </ion-card-title>
+
+
+      </ion-card-header>
+
+      <ion-card-content>
+
+        <div class="estado-carga" *ngIf="cargando">
+
+
+          <ion-spinner name="crescent">
+
+          </ion-spinner>
+
+          <span>
+
+            Cargando ingresos...
+
+          </span>
+
+        </div>
+
+        <p class="sin-registros" *ngIf="!cargando && ingresos.length===0">
+
+
+          No hay ingresos registrados.
+
+
+        </p>
+
+        <ion-list *ngIf="!cargando && ingresos.length>0">
+
+
+
+          <ion-item *ngFor="let ingreso of ingresos">
+
+
+
+            <ion-label>
+
+
+
+              <div class="encabezado-ingreso">
+
+
+                <h2>
+
+                  Ingreso #{{ingreso.ingresoId}}
+
+                </h2>
+
+
+
+                <span class="estado" [class.activo]="ingreso.estado === 'Activo'">
+
+
+                  {{ingreso.estado}}
+
+
+                </span>
+
+
+              </div>
+
+
+
+
+
+   <p>
+  Vehículo:
+  {{ obtenerDescripcionVehiculo(ingreso.vehiculoId) }}
+</p>
+
+
+              <p>
+
+                Parqueo ID:
+
+                {{ingreso.parqueoId}}
+
+              </p>
+
+
+
+              <p>
+
+                Espacio:
+
+                {{ingreso.espacioId}}
+
+              </p>
+
+              <p>
+
+                Entrada:
+
+                {{ingreso.fechaIngreso | date:'dd/MM/yyyy HH:mm'}}
+
+              </p>
+
+              <p *ngIf="ingreso.fechaSalida">
+
+                Salida:
+
+                {{ingreso.fechaSalida | date:'dd/MM/yyyy HH:mm'}}
+
+
+              </p>
+
+              <div class="acciones-ingreso" *ngIf="!ingreso.fechaSalida">
+
+                <ion-button size="small" color="danger" fill="outline" (click)="registrarSalida(ingreso)">
+
+
+                  Registrar salida
+                </ion-button>
+
+              </div>
+
+            </ion-label>
+
+          </ion-item>
+
+        </ion-list>
+
+      </ion-card-content>
+    </ion-card>
+  </main>
 </ion-content>

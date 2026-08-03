@@ -1,13 +1,333 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>vehiculos</ion-title>
+    <ion-buttons slot="start">
+      <button
+        type="button"
+        class="boton-volver-dashboard"
+        routerLink="/dashboard"
+      >
+        <span class="circulo-icono-volver">
+          <ion-icon
+            name="arrow-back-outline"
+          ></ion-icon>
+        </span>
+
+        <span class="texto-volver-dashboard">
+          Volver al Dashboard
+        </span>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Vehículos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">vehiculos</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <main class="pagina-vehiculos">
+    <section class="encabezado-pagina">
+      <div class="icono-pagina">
+        <ion-icon
+          name="car-sport-outline"
+        ></ion-icon>
+      </div>
+
+      <div>
+        <span>Gestión vehicular</span>
+
+        <h1>
+          Administración de vehículos
+        </h1>
+
+        <p>
+          Registra los vehículos y relaciónalos
+          con sus propietarios.
+        </p>
+      </div>
+    </section>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          {{
+            vehiculoEditandoId
+              ? 'Editar vehículo'
+              : 'Registrar vehículo'
+          }}
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <form
+          [formGroup]="formulario"
+          (ngSubmit)="guardar()"
+        >
+          <div class="form-grid">
+            <ion-item>
+              <ion-select
+                label="Cliente propietario"
+                labelPlacement="stacked"
+                interface="popover"
+                placeholder="Seleccione un cliente"
+                formControlName="clienteId"
+              >
+                <ion-select-option
+                  *ngFor="let cliente of clientes"
+                  [value]="cliente.clienteId"
+                  [disabled]="!cliente.activo"
+                >
+                  {{ cliente.nombre }}
+                  {{ cliente.apellidos }}
+                  {{
+                    cliente.activo
+                      ? ''
+                      : ' - Inactivo'
+                  }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-select
+                label="Tipo de vehículo"
+                labelPlacement="stacked"
+                interface="popover"
+                placeholder="Seleccione un tipo"
+                formControlName="tipoVehiculoId"
+              >
+                <ion-select-option
+                  *ngFor="
+                    let tipo of tiposVehiculo
+                  "
+                  [value]="tipo.tipoVehiculoId"
+                  [disabled]="!tipo.activo"
+                >
+                  {{ tipo.descripcion }}
+                  {{
+                    tipo.activo
+                      ? ''
+                      : ' - Inactivo'
+                  }}
+                </ion-select-option>
+              </ion-select>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Placa"
+                labelPlacement="stacked"
+                formControlName="placa"
+                placeholder="Ejemplo: ABC-123"
+                maxlength="20"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Marca"
+                labelPlacement="stacked"
+                formControlName="marca"
+                placeholder="Ejemplo: Toyota"
+                maxlength="50"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Modelo"
+                labelPlacement="stacked"
+                formControlName="modelo"
+                placeholder="Ejemplo: Corolla"
+                maxlength="50"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-input
+                label="Color"
+                labelPlacement="stacked"
+                formControlName="color"
+                placeholder="Ejemplo: Blanco"
+                maxlength="50"
+              ></ion-input>
+            </ion-item>
+
+            <ion-item class="campo-estado">
+              <ion-toggle
+                formControlName="activo"
+              >
+                Vehículo activo
+              </ion-toggle>
+            </ion-item>
+          </div>
+
+          <div class="acciones-formulario">
+            <ion-button
+              type="submit"
+              [disabled]="
+                guardando ||
+                cargando
+              "
+            >
+              {{
+                guardando
+                  ? 'Guardando...'
+                  : vehiculoEditandoId
+                    ? 'Actualizar'
+                    : 'Registrar'
+              }}
+            </ion-button>
+
+            <ion-button
+              *ngIf="vehiculoEditandoId"
+              type="button"
+              fill="outline"
+              color="medium"
+              [disabled]="guardando"
+              (click)="cancelarEdicion()"
+            >
+              Cancelar
+            </ion-button>
+          </div>
+        </form>
+      </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          Vehículos registrados
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div
+          class="estado-carga"
+          *ngIf="cargando"
+        >
+          <ion-spinner
+            name="crescent"
+          ></ion-spinner>
+
+          <span>
+            Cargando vehículos...
+          </span>
+        </div>
+
+        <p
+          class="sin-registros"
+          *ngIf="
+            !cargando &&
+            vehiculos.length === 0
+          "
+        >
+          No hay vehículos registrados.
+        </p>
+
+        <ion-list
+          *ngIf="
+            !cargando &&
+            vehiculos.length > 0
+          "
+        >
+          <ion-item
+            *ngFor="
+              let vehiculo of vehiculos
+            "
+          >
+            <div class="icono-vehiculo">
+              <ion-icon
+                name="car-sport-outline"
+              ></ion-icon>
+            </div>
+
+            <ion-label>
+              <div class="encabezado-vehiculo">
+                <h2>
+                  {{ vehiculo.placa }}
+                </h2>
+
+                <span
+                  class="estado-vehiculo"
+                  [class.inactivo]="
+                    !vehiculo.activo
+                  "
+                >
+                  {{
+                    vehiculo.activo
+                      ? 'Activo'
+                      : 'Inactivo'
+                  }}
+                </span>
+              </div>
+
+              <p>
+                Propietario:
+                <strong>
+                  {{
+                    obtenerNombreCliente(
+                      vehiculo.clienteId
+                    )
+                  }}
+                </strong>
+              </p>
+
+              <p>
+                Tipo:
+                {{
+                  obtenerTipoVehiculo(
+                    vehiculo.tipoVehiculoId
+                  )
+                }}
+              </p>
+
+              <p>
+                Marca:
+                {{ vehiculo.marca }}
+              </p>
+
+              <p>
+                Modelo:
+                {{
+                  vehiculo.modelo ||
+                  'No indicado'
+                }}
+              </p>
+
+              <p>
+                Color:
+                {{
+                  vehiculo.color ||
+                  'No indicado'
+                }}
+              </p>
+            </ion-label>
+
+            <div class="acciones-vehiculo">
+              <ion-button
+                size="small"
+                fill="outline"
+                (click)="editar(vehiculo)"
+              >
+                Editar
+              </ion-button>
+
+              <ion-button
+                size="small"
+                color="danger"
+                fill="outline"
+                [disabled]="!vehiculo.activo"
+                (click)="eliminar(vehiculo)"
+              >
+                {{
+                  vehiculo.activo
+                    ? 'Desactivar'
+                    : 'Desactivado'
+                }}
+              </ion-button>
+            </div>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </main>
 </ion-content>

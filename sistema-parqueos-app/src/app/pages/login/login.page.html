@@ -1,13 +1,150 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-no-border">
   <ion-toolbar>
-    <ion-title>login</ion-title>
+    <ion-title>SistemaParqueos</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">login</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <main class="pagina-login">
+    <section class="panel-informativo">
+      <div class="marca">
+        <div class="logo">
+          <ion-icon name="car-sport-outline"></ion-icon>
+        </div>
+
+        <div>
+          <span>Gestión administrativa</span>
+          <strong>SistemaParqueos</strong>
+        </div>
+      </div>
+
+      <div class="informacion">
+        
+
+        <h1>
+          Gestiona cada espacio, controla cada movimiento
+        </h1>
+
+        <p>
+          Gestiona clientes, vehículos, espacios,
+          ingresos, salidas y facturas de forma sencilla.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel-login">
+      <div class="tarjeta-login">
+        <div class="encabezado-login">
+          <div class="icono-login">
+            <ion-icon name="lock-closed-outline"></ion-icon>
+          </div>
+
+          <p>Acceso administrativo</p>
+
+          <h2>Iniciar sesión</h2>
+
+          <span>
+            Hola Administrador ingresa tu correo y contraseña.
+          </span>
+        </div>
+
+        <form
+          (ngSubmit)="iniciarSesion()"
+          novalidate
+        >
+          <div class="campo">
+            <ion-input
+              label="Correo electrónico"
+              labelPlacement="stacked"
+              fill="outline"
+              type="email"
+              name="correo"
+              autocomplete="email"
+              placeholder="administrador@correo.com"
+              [(ngModel)]="credenciales.correo"
+              [disabled]="cargando"
+            >
+              <ion-icon
+                slot="start"
+                name="mail-outline"
+              ></ion-icon>
+            </ion-input>
+          </div>
+
+          <div class="campo">
+            <ion-input
+              label="Contraseña"
+              labelPlacement="stacked"
+              fill="outline"
+              [type]="mostrarClave ? 'text' : 'password'"
+              name="clave"
+              autocomplete="current-password"
+              placeholder="Ingresa tu contraseña"
+              [(ngModel)]="credenciales.clave"
+              [disabled]="cargando"
+            >
+              <ion-icon
+                slot="start"
+                name="lock-closed-outline"
+              ></ion-icon>
+
+              <ion-button
+                slot="end"
+                type="button"
+                fill="clear"
+                class="boton-clave"
+                [disabled]="cargando"
+                [attr.aria-label]="
+                  mostrarClave
+                    ? 'Ocultar contraseña'
+                    : 'Mostrar contraseña'
+                "
+                (click)="cambiarVisibilidadClave()"
+              >
+                <ion-icon
+                  [name]="
+                    mostrarClave
+                      ? 'eye-off-outline'
+                      : 'eye-outline'
+                  "
+                ></ion-icon>
+              </ion-button>
+            </ion-input>
+          </div>
+
+          <div
+            class="mensaje-error"
+            *ngIf="mensajeError"
+          >
+            {{ mensajeError }}
+          </div>
+
+          <ion-button
+            expand="block"
+            type="submit"
+            class="boton-ingresar"
+            [disabled]="cargando"
+          >
+            <ion-spinner
+              *ngIf="cargando"
+              name="crescent"
+            ></ion-spinner>
+
+            <span *ngIf="!cargando">
+              Iniciar sesión
+            </span>
+
+            <span *ngIf="cargando">
+              Verificando...
+            </span>
+          </ion-button>
+        </form>
+
+        <p class="nota">
+          Acceso exclusivo para el administrador del
+          sistema.
+        </p>
+      </div>
+    </section>
+  </main>
 </ion-content>

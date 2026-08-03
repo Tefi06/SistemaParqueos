@@ -18,6 +18,7 @@ public class ParqueoAD : IParqueoAD
     public async Task<List<Parqueo>> ObtenerTodosAsync()
     {
         return await _context.Parqueos
+             .Include(p => p.EspacioParqueos)
             .AsNoTracking()
             .Where(parqueo => parqueo.Activo)
             .OrderBy(parqueo => parqueo.NombreParqueo)

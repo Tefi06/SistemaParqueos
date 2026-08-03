@@ -82,21 +82,26 @@ public class IngresoVehiculoLN : IIngresoVehiculoLN
             );
         }
 
+        DateTime fechaActual =
+     TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+         DateTime.UtcNow,
+         "Central America Standard Time"
+     );
+
         espacio.Disponible = false;
-        espacio.ActualizadoEn = DateTime.UtcNow;
+        espacio.ActualizadoEn = fechaActual;
         espacio.ActualizadoPor = "Sistema";
 
         IngresoVehiculo ingreso = new()
         {
             VehiculoId = ingresoDTO.VehiculoId,
             EspacioId = espacio.EspacioId,
-            FechaIngreso = DateTime.UtcNow,
+            FechaIngreso = fechaActual,
             FechaSalida = null,
             Estado = "Activo",
-            CreadoEn = DateTime.UtcNow,
+            CreadoEn = fechaActual,
             CreadoPor = "Sistema"
         };
-
         IngresoVehiculo creado =
             await _ingresoVehiculoAD.CrearAsync(ingreso);
 
@@ -125,8 +130,11 @@ public class IngresoVehiculoLN : IIngresoVehiculoLN
                 "El ingreso ya fue finalizado."
             );
         }
-
-        DateTime fechaSalida = DateTime.UtcNow;
+        DateTime fechaSalida =
+    TimeZoneInfo.ConvertTimeBySystemTimeZoneId(
+        DateTime.UtcNow,
+        "Central America Standard Time"
+    );
 
         if (fechaSalida < ingreso.FechaIngreso)
         {

@@ -38,6 +38,10 @@ builder.Services.AddScoped<IFacturaAD, FacturaAD>();
 builder.Services.AddScoped<IFacturaLN, FacturaLN>();
 builder.Services.AddScoped<IIngresoVehiculoAD, IngresoVehiculoAD>();
 builder.Services.AddScoped<IIngresoVehiculoLN, IngresoVehiculoLN>();
+builder.Services.AddScoped<IAuthAD, AuthAD>();
+builder.Services.AddScoped<IAuthLN, AuthLN>();
+builder.Services.AddScoped<IDashboardAD, DashboardAD>();
+builder.Services.AddScoped<IDashboardLN, DashboardLN>();
 
 builder.Services.AddCors(options =>
 {
